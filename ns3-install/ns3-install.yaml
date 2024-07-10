@@ -51,7 +51,7 @@
               args:
                 chdir: "{{ ROOT_DIR }}"
 
-            - name: Executando 'build.py' .. aguarde!
-              shell:  ./build.py
-              args:
-                chdir: "{{ DIR_NS3 }}"
+           # - name: Executando 'build.py' .. aguarde!
+           #   shell:  ./build.py
+           #   args:
+           #     chdir: "{{ DIR_NS3 }}"
