@@ -17,3 +17,4 @@ Acessar o diretório de instalação do NS3 e executar o playbook utilizando Ans
 ```
 cd ImmersiveQoe/ns3-install &&  ansible-playbook -K ns3-install.yaml
 ```
+A execução do comando acima vai executar todos os procedimentos de instalação. O ambiente foi construído supondo um VM da DigitalOcean. O código Ansible vai instalar todas as dependencias, fazer o download do NS3 e instalar no direório root. Devido a quantidade de procedimentos o comando acima pode demorar alguns minutos. Execute o comando e aguarde. Vá acompanhando os logs do Teminal, caso algum erro venha a acontecer o mesmo será apresentado como FAIL em uma mensagem na cor vermelha.
