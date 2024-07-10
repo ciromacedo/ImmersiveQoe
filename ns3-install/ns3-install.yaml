@@ -39,10 +39,8 @@
                     python3 -m pip install --user cppyy
             
             - name  : Criar diretório de instalação
-              shell : |
-                mkdir {{ DIR_INSTALL }}
-              args:
-                chdir: "{{ ROOT_DIR }}"
+              shell : mkdir {{ PATH_DIR_INSTALL }}
+              
 
             - name: Downloado NS3 v-3.35
               shell:  wget https://www.nsnam.org/releases/ns-allinone-3.35.tar.bz2
