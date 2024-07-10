@@ -15,5 +15,5 @@ git clone https://github.com/rosanapilar/ImmersiveQoe.git
 
 Acessar o diretório de instalação do NS3 e executar o playbook utilizando Ansible:
 ```
-cd ImmersiveQoe/ns3-install &&  ansible-playbook -K ns3-install.yml
+cd ImmersiveQoe/ns3-install &&  ansible-playbook -K ns3-install.yaml
 ```

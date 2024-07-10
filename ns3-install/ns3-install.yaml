@@ -13,21 +13,23 @@
             #    msg: "'internet_network_interface' not found, this parameter is required!"
             #  when: internet_network_interface == ''
 
-            - name: Environment validation!
+            - name: Validando a quantidade de memória disponível. Min-4GB
               assert:
                 that:
                   - ansible_memtotal_mb >= 3000
                 msg: "Minimum memory requirements in the deployment environment is 4GB! Operation failed!"
-    
 
-            - name: Upgrade all apt packages
+            - name: Atualização de pacotes
               apt: upgrade=dist force_apt_get=yes
             
-            - name: Install Basic requirements
+            - name: Instalando as dependências
               apt:
-                    name: ['g++', 'cmake', 'ninja-build', 'curl', 'ccache']
+                    name: ['g++', 'cmake', 'ninja-build', 'curl', 'ccache', 'python3-pip']
                     state: present
                     update_cache: yes
 
+            - name: Install WebConsole front-end dependencies - 1/3
+              shell :  |
+                    sudo apt update && sudo apt -y install yarn
             
                                                                                                                                           
