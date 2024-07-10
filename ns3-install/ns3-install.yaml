@@ -19,12 +19,12 @@
                   - ansible_memtotal_mb >= 3000
                 msg: "Minimum memory requirements in the deployment environment is 4GB! Operation failed!"
 
-            - name: Atualização de pacotes
+            - name: Atualizando pacotes do SO, aguarde!
               apt: upgrade=dist force_apt_get=yes
             
-            - name: Instalando dependências
+            - name: Instalando dependências, aguarde!
               apt:
-                    name: ['g++', 'cmake', 'ninja-build', 'curl', 'ccache', 'python3-pip', 'gir1.2-goocanvas-2.0', 'python3-gi', 'python3-gi-cairo', 'python3-pygraphviz', 'gir1.2-gtk-3.0', 'ipython3']
+                    name: ['g++', 'cmake', 'ninja-build', 'curl', 'ccache', 'python3-pip', 'gir1.2-goocanvas-2.0', 'python3-gi', 'python3-gi-cairo', 'python3-pygraphviz', 'gir1.2-gtk-3.0', 'ipython3', 'python3-dev', 'pkg-config', 'sqlite3', 'python3-setuptools', 'qtbase5-dev', 'qtchooser', 'qt5-qmake', 'qtbase5-dev-tools', 'openmpi-bin', 'openmpi-common', 'openmpi-doc', 'libopenmpi-dev', 'mercurial', 'unzip', 'gdb', 'valgrind', 'clang-format', 'doxygen', 'graphviz', 'imagemagick', 'texlive', 'texlive-extra-utils', 'texlive-latex-extra', 'texlive-font-utils', 'dvipng', 'latexmk', 'python3-sphinx', 'dia', 'gsl-bin', 'libgsl-dev', 'libgslcblas0', 'tcpdump', 'sqlite', 'libsqlite3-dev', 'libxml2', 'libxml2-dev', 'libgtk-3-dev', 'vtun', 'lxc', 'uml-utilities', 'libboost-all-dev']
                     state: present
                     update_cache: yes
 
