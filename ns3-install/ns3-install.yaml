@@ -49,3 +49,8 @@
               shell:  rm -rf ns-allinone-3.35.tar.bz2
               args:
                 chdir: "{{ ROOT_DIR }}"
+
+            - name: Executando 'build.py' .. aguarde!
+              shell:  ./build.py
+              args:
+                chdir: "{{ DIR_NS3 }}"
