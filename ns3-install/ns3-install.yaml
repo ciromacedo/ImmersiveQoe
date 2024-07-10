@@ -16,7 +16,7 @@
             - name: Environment validation!
               assert:
                 that:
-                  - ansible_memtotal_mb >= 500
+                  - ansible_memtotal_mb >= 3000
                 msg: "Minimum memory requirements in the deployment environment is 4GB! Operation failed!"
     
 
@@ -25,7 +25,7 @@
             
             - name: Install Basic requirements
               apt:
-                    name: ['mongodb', 'wget', 'git', 'ca-certificates', 'net-tools', 'gcc', 'cmake', 'autoconf', 'build-essential', 'libtool', 'pkg-config', 'libmnl-dev', 'libyaml-dev', 'curl']
+                    name: ['g++', 'cmake', 'ninja-build', 'curl', 'ccache']
                     state: present
                     update_cache: yes
 
