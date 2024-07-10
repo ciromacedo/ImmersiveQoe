@@ -3,7 +3,18 @@ Procedimentos de instalação do NS3.
 **Atenção: Todos os procedimentos de instalação devem ser executados com privilégios de root (SUDO SU).**
 
 #### 1º Instalação das dependências
-Install python + git + ansible:
+Remover Python3.10 e instalar o Python3.9:
+```
+sudo apt remove python3.10 -y
+sudo apt autoremove -y
+sudo apt install software-properties-common -y
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt update
+sudo apt install python3.9 -y
+sudo apt install python3.9-distutils -y
+```
+
+Install git + ansible:
 ```
 sudo apt update && sudo apt -y install git && sudo apt -y install ansible && sudo apt -y install libgcrypt20-dev && sudo apt -y python3-empy
 ```
@@ -17,6 +28,27 @@ Acessar o diretório de instalação do NS3 e executar o playbook utilizando Ans
 ```
 cd ImmersiveQoe/ns3-install &&  ansible-playbook -K ns3-install.yaml
 ```
+
+Após a finalização abrir o arquivo
+```
+/root/ns-allinone-3.35/pybindgen-0.22.0/pybindgen/cppclass.py 
+```
+
+comentar
+```
+import collections
+```
+
+e adicionar
+```
+ try:
+    from collections.abc import Callable
+except ImportError:
+    from collections import Callable
+```
+
+Os últimos passos visao corrigir BUG de compilação do python 3.10.12.
+
 A execução do comando acima vai executar todos os procedimentos de instalação. O ambiente foi construído supondo um VM da DigitalOcean. O código Ansible vai instalar todas as dependencias, fazer o download do NS3 e instalar no direório root. Devido a quantidade de procedimentos o comando acima pode demorar alguns minutos. Execute o comando e aguarde. Vá acompanhando os logs do Teminal, caso algum erro venha a acontecer o mesmo será apresentado como FAIL em uma mensagem na cor vermelha.
 
 ## Resolução de Probelmas
