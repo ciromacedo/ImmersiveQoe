@@ -4,9 +4,9 @@
         become: yes
         remote_user: root
         vars:
-            GTP5G_DIR_INSTALL : "/root/gtp5g"
-            FREE5GC_DIR_INSTALL : "/root/go/src/free5gc"
-            UPF_IP_ADDRESS: "127.0.0.8"
+            ROOT_DIR : "/root"
+            PATH_DIR_INSTALL : "/root/ns3_install"
+            DIR_INSTALL : "/ns3_install"
             
         tasks:
             #- fail: 
@@ -21,10 +21,16 @@
 
             - name: Atualizando pacotes do SO, aguarde!
               apt: upgrade=dist force_apt_get=yes
+
+            - name: Remove o diretório de instalação (caso exista)
+              shell:  sudo rm -rf {{ DIR_INSTALL }}
+              ignore_errors: true
+              args:
+                chdir: "{{ ROOT_DIR }}"
             
             - name: Instalando dependências, aguarde!
               apt:
-                    name: ['g++', 'cmake', 'ninja-build', 'curl', 'ccache', 'python3-pip', 'gir1.2-goocanvas-2.0', 'python3-gi', 'python3-gi-cairo', 'python3-pygraphviz', 'gir1.2-gtk-3.0', 'ipython3', 'python3-dev', 'pkg-config', 'sqlite3', 'python3-setuptools', 'qtbase5-dev', 'qtchooser', 'qt5-qmake', 'qtbase5-dev-tools', 'openmpi-bin', 'openmpi-common', 'openmpi-doc', 'libopenmpi-dev', 'mercurial', 'unzip', 'gdb', 'valgrind', 'clang-format', 'doxygen', 'graphviz', 'imagemagick', 'texlive', 'texlive-extra-utils', 'texlive-latex-extra', 'texlive-font-utils', 'dvipng', 'latexmk', 'python3-sphinx', 'dia', 'gsl-bin', 'libgsl-dev', 'libgslcblas0', 'tcpdump', 'sqlite', 'libsqlite3-dev', 'libxml2', 'libxml2-dev', 'libgtk-3-dev', 'vtun', 'lxc', 'uml-utilities', 'libboost-all-dev']
+                    name: ['wget', 'g++', 'cmake', 'ninja-build', 'curl', 'ccache', 'python3-pip', 'gir1.2-goocanvas-2.0', 'python3-gi', 'python3-gi-cairo', 'python3-pygraphviz', 'gir1.2-gtk-3.0', 'ipython3', 'python3-dev', 'pkg-config', 'sqlite3', 'python3-setuptools', 'qtbase5-dev', 'qtchooser', 'qt5-qmake', 'qtbase5-dev-tools', 'openmpi-bin', 'openmpi-common', 'openmpi-doc', 'libopenmpi-dev', 'mercurial', 'unzip', 'gdb', 'valgrind', 'clang-format', 'doxygen', 'graphviz', 'imagemagick', 'texlive', 'texlive-extra-utils', 'texlive-latex-extra', 'texlive-font-utils', 'dvipng', 'latexmk', 'python3-sphinx', 'dia', 'gsl-bin', 'libgsl-dev', 'libgslcblas0', 'tcpdump', 'sqlite', 'libsqlite3-dev', 'libxml2', 'libxml2-dev', 'libgtk-3-dev', 'vtun', 'lxc', 'uml-utilities', 'libboost-all-dev']
                     state: present
                     update_cache: yes
 
@@ -32,4 +38,13 @@
               shell :  |
                     python3 -m pip install --user cppyy
             
-                                                                                                                                          
+            - name  : Criar diretório de instalação
+              shell : |
+                mkdir {{ DIR_INSTALL }}
+              args:
+                chdir: "{{ ROOT_DIR }}"
+
+            - name: Downloado NS3 v-3.35
+              shell:  wget https://www.nsnam.org/releases/ns-allinone-3.35.tar.bz2
+              args:
+                chdir: "{{ PATH_DIR_INSTALL }}"
