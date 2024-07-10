@@ -38,9 +38,13 @@
             
             - name  : Criar diretório de instalação
               shell : mkdir {{ PATH_DIR_INSTALL }}
-              
 
             - name: Downloado NS3 v-3.35
               shell:  wget https://www.nsnam.org/releases/ns-allinone-3.35.tar.bz2
+              args:
+                chdir: "{{ PATH_DIR_INSTALL }}"
+
+            - name: Downloado NS3 v-3.35
+              shell:  tar xjf ns-allinone-3.35.tar.bz2
               args:
                 chdir: "{{ PATH_DIR_INSTALL }}"
