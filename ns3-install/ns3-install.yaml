@@ -50,6 +50,6 @@
                 chdir: "{{ PATH_DIR_INSTALL }}"
 
             - name: Removendo ns-allinone-3.35.tar.bz2
-              shell:  rm -rf go1.14.4.linux-amd64.tar.gz
+              shell:  rm -rf ns-allinone-3.35.tar.bz2
               args:
                 chdir: "{{ PATH_DIR_INSTALL }}"
