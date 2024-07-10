@@ -5,8 +5,8 @@
         remote_user: root
         vars:
             ROOT_DIR : "/root"
-            PATH_DIR_INSTALL : "/root/ns3_install"
-            DIR_INSTALL : "/ns3_install"
+            PATH_DIR_INSTALL : "/root/install"
+            DIR_NS3 : "/root/install/ns-allinone-3.35"
             
         tasks:
             #- fail: 
@@ -39,12 +39,17 @@
             - name  : Criar diretório de instalação
               shell : mkdir {{ PATH_DIR_INSTALL }}
 
-            - name: Downloado NS3 v-3.35
+            - name: Download NS3 v-3.35
               shell:  wget https://www.nsnam.org/releases/ns-allinone-3.35.tar.bz2
               args:
                 chdir: "{{ PATH_DIR_INSTALL }}"
 
-            - name: Downloado NS3 v-3.35
+            - name: Descompactando .TAR
               shell:  tar xjf ns-allinone-3.35.tar.bz2
+              args:
+                chdir: "{{ PATH_DIR_INSTALL }}"
+
+            - name: Removendo ns-allinone-3.35.tar.bz2
+              shell:  rm -rf go1.14.4.linux-amd64.tar.gz
               args:
                 chdir: "{{ PATH_DIR_INSTALL }}"
