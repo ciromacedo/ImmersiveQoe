@@ -5,7 +5,7 @@ Procedimentos de instalação do NS3.
 #### 1º Instalação das dependências
 Install python + git + ansible:
 ```
-sudo apt update && sudo apt -y install git && sudo apt -y install ansible
+sudo apt update && sudo apt -y install git && sudo apt -y install ansible && sudo apt -y install libgcrypt20-dev && sudo apt -y python3-empy
 ```
 
 Clonar este repositório:
