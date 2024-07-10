@@ -5,8 +5,7 @@
         remote_user: root
         vars:
             ROOT_DIR : "/root"
-            PATH_DIR_INSTALL : "/root/install"
-            DIR_NS3 : "/root/install/ns-allinone-3.35"
+            DIR_NS3 : "/root/ns-allinone-3.35"
             
         tasks:
             #- fail: 
@@ -23,7 +22,7 @@
               apt: upgrade=dist force_apt_get=yes
 
             - name: Remove o diretório de instalação (caso exista)
-              shell:  sudo rm -rf {{ PATH_DIR_INSTALL }}
+              shell:  sudo rm -rf {{ DIR_NS3 }}
               ignore_errors: true
                           
             - name: Instalando dependências, aguarde!
@@ -36,20 +35,17 @@
               shell :  |
                     python3 -m pip install --user cppyy
             
-            - name  : Criar diretório de instalação
-              shell : mkdir {{ PATH_DIR_INSTALL }}
-
             - name: Download NS3 v-3.35
               shell:  wget https://www.nsnam.org/releases/ns-allinone-3.35.tar.bz2
               args:
-                chdir: "{{ PATH_DIR_INSTALL }}"
+                chdir: "{{ ROOT_DIR }}"
 
             - name: Descompactando .TAR
               shell:  tar xjf ns-allinone-3.35.tar.bz2
               args:
-                chdir: "{{ PATH_DIR_INSTALL }}"
+                chdir: "{{ ROOT_DIR }}"
 
             - name: Removendo ns-allinone-3.35.tar.bz2
               shell:  rm -rf ns-allinone-3.35.tar.bz2
               args:
-                chdir: "{{ PATH_DIR_INSTALL }}"
+                chdir: "{{ ROOT_DIR }}"
