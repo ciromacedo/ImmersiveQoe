@@ -8,9 +8,9 @@
             DIR_NS3 : "/root/ns-allinone-3.35"
             
         tasks:
-            #- fail: 
-            #    msg: "'internet_network_interface' not found, this parameter is required!"
-            #  when: internet_network_interface == ''
+            - fail: 
+                msg: "'compilarNS3' não encontrado, parâmetro é obrigatório!"
+              when: compilarNS3 == ''
 
             - name: Validando a quantidade de memória disponível. Min-4GB
               assert:
@@ -54,7 +54,8 @@
               args:
                 chdir: "{{ ROOT_DIR }}"
 
-           # - name: Executando 'build.py' .. aguarde!
-           #   shell:  ./build.py
-           #   args:
-           #     chdir: "{{ DIR_NS3 }}"
+            - name: Executando 'build.py' .. aguarde!
+              shell:  ./build.py
+              args:
+                chdir: "{{ DIR_NS3 }}"
+              when: compilarNS3 == 'true'
