@@ -36,3 +36,25 @@ O arquivo **build.py** no diretório ns-allinone-3.35 é um script de conveniên
 * **build.py:** Use este script quando estiver configurando e compilando o ns-3 pela primeira vez ou quando precisar garantir que todas as dependências e subcomponentes do pacote all-in-one sejam configurados e compilados corretamente.
 
 * **./waf build:** Use este comando quando já tiver configurado o ns-3 e estiver recompilando após fazer modificações no código ou quando precisar apenas recompilar o core do ns-3 e os exemplos.
+* - - -
+* # Passo 2: Adicionando o Modelo Imersivo
+
+Additional s/w required:
+-------------------------
+1)gunplot
+install command 
+sudo apt-get install gnuplot
+
+1. Copie os diretorios a pasta src  Copy the src and scratch folder and  paste into your ns-3.35 folder 
+2. Open the terminal go to ns-allinone-3.35/ns-3.35
+3. Next type this command "sudo ./waf configure --enable-examples --enable-tests"
+4. Next type this command to build our module "sudo ./waf build"
+5. Get build finished successfully message 
+
+
+   ##Executando o modelo
+
+1. run command:
+sudo ./waf --run filename --vis
+2. Copy the img1 folder from code and paste it in netanim folder of your ns3 file.
+   
