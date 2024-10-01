@@ -56,5 +56,7 @@ sudo apt-get install gnuplot
 
 1. run command:
 sudo ./waf --run filename --vis
-2. Copy the img1 folder from code and paste it in netanim folder of your ns3 file.
+sudo ./waf --run Proposed_Enhancing_Quality_of_Experience  --vis
+
+3. Copy the img1 folder from code and paste it in netanim folder of your ns3 file.
    
