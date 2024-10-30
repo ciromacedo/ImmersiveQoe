@@ -47,9 +47,42 @@ Vamos começar com as configurações do host responsável por executar o fee5gc
     <img src="../images/ip_free5gc_hosts.png"/> 
 </p>
 
+* Acesse a VM do _fee5gc-core_, execute o comando ```ifconfig``` e anote o nome da interface de rede que dá acesso a internet **internet network interface**, conforme ilustrado a seguir:
+<p align="center">
+    <img src="../images/if_config.png"/> 
+</p>
+substitua o º marcador```<internet-network-interface>```, ilustrado na figura a seguir na cor vermelha, pelo nome da interface de rede que dá acesso a internet.
+<p align="center">
+    <img src="../images/ip_free5gc_hosts.png"/> 
+</p>
+Obs: Mantenha o parâmetro n3iwf_install com o valor FALSE para o host _fee5gc-core_
 
- via SSH cada uma das VMs e executar o seguinte comando para instalar algumas dependências básicas.
+* Substitua o 3º marcador ```<IP-address>```, ilustrado na cor amarela na figura a seguir, pelo endereço IP da VM onde  _fee5gc-n3iwf_ será configurada.
+* Substitua o 4º marcador ```<free5gc-core-IP-address>```, ilustrado na cor amarela na figura a seguir, pelo endereço IP da  VM onde o _fee5gc-core_ será configurado (mesmo endereço IP informado no 1º marcador).
+<p align="center">
+    <img src="../images/ip_free5gc_hosts.png"/> 
+</p>
+
+### Testando a conexão do Ansible
+Agora vamos testar a conectividade do Ansible com os hosts configurados anteriormente. Em um terminal, dentro do diretório ```_ImmersiveQoe/non3gpp-install```, execute o comando a seguir:
+```
+ansible -i ./hosts -m ping all -u root
+```
+Deverá ser apresentado como resultado no terminal um _pong_ para  cada um dos hosts.
+
+### Instalando GO via Ansible
+O comando a seguir vai instalar a versão GO v.1.14 nas VMs do free5gc e da N3iwf. O comando deverá ser executado no termninal dentro do diretório ``_ImmersiveQoe/non3gpp-install```.
 
 ```
-sudo apt update && apt -y install python && sudo apt -y install git && sudo apt -y install ansible && sudo apt -y install net-tools && sudo apt -y install traceroute && sudo apt -y install wireless-tools
+ansible-playbook ./go-install-1.14.yaml -i ./hosts
+```
+
+Diferentemente do free5gc e da n3iwf, o UE-non3GPP faz uso da versão 1.21 do Go. A instalação pode ser realizada com o comando abaixo:
+```
+ansible-playbook ./go-install-1.21.yaml -i ./hosts
+```
+
+Após a instalação é necessário entrar em cada uma das VMs e atualizar o bashrc com o comando a seguir:
+```
+source ~/.bashrc
 ```
