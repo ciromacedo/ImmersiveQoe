@@ -151,3 +151,6 @@ Coleta informações de taxa de transferência da interface de rede em um interv
 ```
 http://<ip-ue-api>:<port>/ue/interface/<wifi-interface-name>/wifi/metrics/<interval>
 ```
+
+### Inicializando DashBoard
+A inicialização da Dash deve acontecer no diretorio  ```UE-non3GPP/webconsole/frontend```. Antes de inciar deve-se informar o IP da api para coleta de métricas. Abrir em algum editar (e.g nano ou vi) o arquivo ```UE-non3GPP/webconsole/frontend/src/app/services/api-config.service.ts``` e adicionar o IP da API na linha 8. Salvar e fechar o arquivo e executar o comando  ```ng serve --host <<ue-non3gpp-ip>>```.
